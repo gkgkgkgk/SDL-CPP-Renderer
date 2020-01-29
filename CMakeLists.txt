@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name
-project(Tutorial)
+project(SDL-CPP-Renderer)
 
 set(SDL2_INCLUDE_DIR /usr/include/SDL2)
 

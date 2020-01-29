@@ -23,6 +23,7 @@ SDL_Init(SDL_INIT_VIDEO);
 
 int main(int argc, char *argv[])
 {
+  std::cout << "Running.";
   setUpSDL();
 
   return 0;
