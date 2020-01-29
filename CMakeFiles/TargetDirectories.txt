@@ -1,0 +1,3 @@
+/home/gavri/Documents/code/renderer/CMakeFiles/rebuild_cache.dir
+/home/gavri/Documents/code/renderer/CMakeFiles/renderer.dir
+/home/gavri/Documents/code/renderer/CMakeFiles/edit_cache.dir
