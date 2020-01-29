@@ -1,1 +1,0 @@
-/usr/bin/c++     CMakeFiles/renderer.dir/renderer.cpp.o  -o renderer -lSDL2 
