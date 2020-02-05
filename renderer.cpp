@@ -1,30 +1,48 @@
+#include <stdlib.h>
+
 #include "SDL.h"
-#include <iostream>
 
-void setUpSDL(){
-SDL_Init(SDL_INIT_VIDEO);
+#define WINDOW_WIDTH 600
 
-  SDL_Window *window = SDL_CreateWindow(
-    "Rendering Engine",
-    SDL_WINDOWPOS_UNDEFINED,
-    SDL_WINDOWPOS_UNDEFINED,
-    500,
-    500,
-    0
-  );
+int main(void) {
+    SDL_Event event;
+    SDL_Renderer *renderer;
+    SDL_Window *window;
+    int i;
 
-  SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-  SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-  SDL_RenderClear(renderer);
-  // update SDL Window
-  SDL_RenderPresent(renderer);
-}
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_CreateWindowAndRenderer(WINDOW_WIDTH, WINDOW_WIDTH, 0, &window, &renderer);
+    
+
+    unsigned int lastFrame;
+    unsigned int currentFrame;
+    int frameCount;
 
 
-int main(int argc, char *argv[])
-{
-  std::cout << "Running.";
-  setUpSDL();
+    while (1) {
+        if (SDL_PollEvent(&event) && event.type == SDL_QUIT){
+            break;
+        }
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_RenderClear(renderer);
 
-  return 0;
+        for (int i = 0; i < 100000; i++){
+            SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            double j = i * 0.01;
+            SDL_RenderDrawPoint(renderer, (WINDOW_WIDTH / 2) + (j * cos(j)), (WINDOW_WIDTH / 2) + (j * sin(j)));
+        }
+        SDL_RenderPresent(renderer);
+
+        frameCount++;
+        currentFrame = SDL_GetTicks();
+        float fps = currentFrame / frameCount;
+
+        printf("%d\n", currentFrame);
+
+        lastFrame = currentFrame;
+    }
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return EXIT_SUCCESS;
 }
